@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container text-center">
+	<div class="jumbotron">
+		<h1>Welcome To The Trial Version Of The WebApplication</h1>
+	</div>
+</div>
+<br><br><br><br>
+<div class="container text-center">
+	<a href="http://127.0.0.1:8000/basic/read"><button type="submit" class="btn btn-info btn-lg">See Users</button></a>
+	<a href="http://127.0.0.1:8000/basic/create"><button formaction='create' type="submit" class="btn btn-danger btn-lg">Register</button></a>
+</div>
+{% endblock %}

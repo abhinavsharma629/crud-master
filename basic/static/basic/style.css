@@ -1,0 +1,5 @@
+body{
+  background-image: url('../img/a.jpg');
+  background-repeat-y: no-repeat;
+  background-size: 100% auto;
+}
