@@ -6,6 +6,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.db.models import Q
+from django.contrib import messages
 
 
 
@@ -18,11 +19,10 @@ def create(request):
  			form=ProfileForm(request.POST)
  			if form.is_valid():
  				form.save()
- 				
+ 				messages.success(request,'User Created Successfully')
  				return render(request, 'basic/success.html',{'form':form})
  		else:
  			form=ProfileForm()
-
  		return render(request, 'basic/register.html',{'form':form})
 
 
@@ -34,7 +34,6 @@ def read(request):
 
 def detailsofuser(request, id_no):
 		details=Profile.objects.filter(id_no=id_no).values()
-		#print(details)
 		print(id_no)
 		args={'details':details}
 		return render(request, 'basic/detailsofuser.html', args)
@@ -43,19 +42,14 @@ def detailsofuser(request, id_no):
 def edituser(request, id_no):
 	details=Profile.objects.get(id_no=id_no)
 	if request.method == "POST":
-		#print(id_no)
 		form = ProfileForm(request.POST, instance=details)
-		print(id_no)
-		#details.delete()
-		#print(details)
 		if form.is_valid():
 			profile = form.save(commit=False)
-			
 			profile.save()
+			messages.success(request,'Informations Edited Successfully')
 			return redirect('read')
 		
 	else:
-		#details=Profile.objects.get(id_no=id_no)
 		form=ProfileForm(instance=details)
 	return render(request, 'basic/edituser.html', {'form': form})
 
@@ -63,4 +57,5 @@ def edituser(request, id_no):
 def deleteuser(request,id_no):
 	details=Profile.objects.get(id_no=id_no)
 	details.delete()
+	messages.success(request,'User Removed SuccessFully')
 	return redirect('read')
