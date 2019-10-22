@@ -3,7 +3,7 @@ dj-database-url==0.3.0
 dj-static==0.0.6
 Unipath==1.0
 python-decouple==3
-Pillow==3.3.0
+Pillow==6.2.0
 Markdown==2.6.6
 bleach==1.4.3
 bcrypt==3.1.5
